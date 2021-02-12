@@ -1,5 +1,6 @@
 import React from "react";
 import Backend from "./Backend";
+import UserModal from "./UserModal";
 import { Row, Col, Table, Typography, Button } from "antd";
 
 import "./App.css";
@@ -39,11 +40,12 @@ class App extends React.Component {
       page: 1,
       total_users: 0,
       loading: true,
+      userModalVisible: false,
     };
   }
 
   componentDidMount() {
-    this.makeUsersQuery(1);
+    this.makeUsersQuery(this.state.page);
   }
 
   makeUsersQuery(page) {
@@ -95,8 +97,12 @@ class App extends React.Component {
   };
 
   showModal(id) {
-    console.log(id);
+    this.setState({ userModalVisible: true });
   }
+
+  closeModal = () => {
+    this.setState({ userModalVisible: false });
+  };
 
   render() {
     return (
@@ -124,6 +130,10 @@ class App extends React.Component {
             ></Table>
           </Col>
         </Row>
+        <UserModal
+          closeModal={this.closeModal}
+          visible={this.state.userModalVisible}
+        ></UserModal>
       </div>
     );
   }
