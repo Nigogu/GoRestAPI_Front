@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "GoRest API Front",
+  "name": "FrontEnd for GoRest API",
   "icons": [
     {
       "src": "favicon.ico",
