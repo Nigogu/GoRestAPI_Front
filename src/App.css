@@ -10,12 +10,13 @@
 
 .App-Col-Title {
   margin-top: 5%;
-  margin-bottom: 3%;
+  margin-bottom: 2%;
 }
 
 .App-Title {
   font-family: "Nunito";
   color: rgb(5, 138, 176) !important;
+  margin-bottom: 0 !important;
 }
 
 table {
