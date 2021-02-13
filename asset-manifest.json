@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/GoRestAPI_Front/static/css/main.5f4a4e7f.chunk.css",
+    "main.js": "/GoRestAPI_Front/static/js/main.bd3ce727.chunk.js",
+    "main.js.map": "/GoRestAPI_Front/static/js/main.bd3ce727.chunk.js.map",
+    "runtime-main.js": "/GoRestAPI_Front/static/js/runtime-main.345872b7.js",
+    "runtime-main.js.map": "/GoRestAPI_Front/static/js/runtime-main.345872b7.js.map",
+    "static/css/2.4ee63354.chunk.css": "/GoRestAPI_Front/static/css/2.4ee63354.chunk.css",
+    "static/js/2.8a27b893.chunk.js": "/GoRestAPI_Front/static/js/2.8a27b893.chunk.js",
+    "static/js/2.8a27b893.chunk.js.map": "/GoRestAPI_Front/static/js/2.8a27b893.chunk.js.map",
+    "static/js/3.a865c092.chunk.js": "/GoRestAPI_Front/static/js/3.a865c092.chunk.js",
+    "static/js/3.a865c092.chunk.js.map": "/GoRestAPI_Front/static/js/3.a865c092.chunk.js.map",
+    "index.html": "/GoRestAPI_Front/index.html",
+    "static/css/2.4ee63354.chunk.css.map": "/GoRestAPI_Front/static/css/2.4ee63354.chunk.css.map",
+    "static/css/main.5f4a4e7f.chunk.css.map": "/GoRestAPI_Front/static/css/main.5f4a4e7f.chunk.css.map",
+    "static/js/2.8a27b893.chunk.js.LICENSE.txt": "/GoRestAPI_Front/static/js/2.8a27b893.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/GoRestAPI_Front/static/media/background.07c38c7b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.345872b7.js",
+    "static/css/2.4ee63354.chunk.css",
+    "static/js/2.8a27b893.chunk.js",
+    "static/css/main.5f4a4e7f.chunk.css",
+    "static/js/main.bd3ce727.chunk.js"
+  ]
+}
