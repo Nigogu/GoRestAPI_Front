@@ -1,7 +1,7 @@
 import React from "react";
 import Backend from "./Backend";
 import UserModal from "./UserModal";
-import { Row, Col, Table, Typography, Button } from "antd";
+import { Row, Col, Table, Typography, Button, Spin } from "antd";
 
 import "./App.css";
 
@@ -39,8 +39,10 @@ class App extends React.Component {
       data: [],
       page: 1,
       total_users: 0,
-      loading: true,
+      loadingTable: true,
+      loadingModal: false,
       userModalVisible: false,
+      selectedUserInfo: {},
     };
   }
 
@@ -78,7 +80,7 @@ class App extends React.Component {
           this.setState({
             data: users_array,
             total_users: total_users,
-            loading: false,
+            loadingTable: false,
           });
         } else {
           console.error("Error making the request: " + response.status);
@@ -90,14 +92,28 @@ class App extends React.Component {
   pagChange = (currentPage) => {
     this.setState(
       {
-        loading: true,
+        loadingTable: true,
       },
       () => this.makeUsersQuery(currentPage)
     );
   };
 
   showModal(id) {
-    this.setState({ userModalVisible: true });
+    this.setState({
+      loadingModal: true,
+    });
+    Backend.SendRequest("users/".concat(id), "GET", {}).then(
+      async (response) => {
+        if (response.status === 200) {
+          let res = await response.json();
+          this.setState({
+            selectedUserInfo: res.data,
+            userModalVisible: true,
+            loadingModal: false,
+          });
+        }
+      }
+    );
   }
 
   closeModal = () => {
@@ -106,35 +122,39 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App-Div-Main">
-        <Row justify="center">
-          <Col className="App-Col-Title" xs={22} md={21} lg={20}>
-            <Title className="App-Title">LISTA DE USUARIOS</Title>
-          </Col>
-        </Row>
-        <Row justify="center">
-          <Col xs={22} md={18} lg={12}>
-            <Table
-              bordered
-              size="small"
-              columns={this.state.columns}
-              dataSource={this.state.data}
-              loading={this.state.loading}
-              pagination={{
-                defaultPageSize: 20,
-                position: ["topRight"],
-                size: "big",
-                showSizeChanger: false,
-                onChange: this.pagChange,
-              }}
-            ></Table>
-          </Col>
-        </Row>
-        <UserModal
-          closeModal={this.closeModal}
-          visible={this.state.userModalVisible}
-        ></UserModal>
-      </div>
+      <Spin spinning={this.state.loadingModal}>
+        <div className="App-Div-Main">
+          <Row justify="center">
+            <Col className="App-Col-Title" xs={22} md={21} lg={20}>
+              <Title className="App-Title">LISTA DE USUARIOS</Title>
+            </Col>
+          </Row>
+          <Row justify="center">
+            <Col xs={22} md={18} lg={12}>
+              <Table
+                bordered
+                size="small"
+                columns={this.state.columns}
+                dataSource={this.state.data}
+                loading={this.state.loadingTable}
+                pagination={{
+                  defaultPageSize: 20,
+                  position: ["topRight"],
+                  size: "big",
+                  showSizeChanger: false,
+                  onChange: this.pagChange,
+                }}
+              ></Table>
+            </Col>
+          </Row>
+
+          <UserModal
+            closeModal={this.closeModal}
+            visible={this.state.userModalVisible}
+            userInfo={this.state.selectedUserInfo}
+          ></UserModal>
+        </div>
+      </Spin>
     );
   }
 }
