@@ -1,8 +1,8 @@
 import React from "react";
-import { Modal, Typography, Row, Col, Avatar } from "antd";
+import { Modal, Typography, Row, Col, Avatar, Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 export default class UserModal extends React.Component {
   translate(type, data) {
@@ -26,32 +26,59 @@ export default class UserModal extends React.Component {
         footer={null}
         closable={false}
       >
-        <Row>
-          <Col>
-            <Title className="App-Title" level={4}>
-              {this.props.userInfo.name}
-            </Title>
-            <Avatar
-              size={{ xs: 60, sm: 60, md: 90, lg: 90, xl: 120, xxl: 120 }}
-              icon={<UserOutlined />}
-            />
+        <Row justify="center">
+          <Title className="App-Title" level={3}>
+            {this.props.userInfo.name}
+          </Title>
+        </Row>
+        <Row align="middle">
+          <Col xs={10} md={8} lg={7}>
+            <Row justify="center">
+              <Avatar
+                size={{ xs: 80, sm: 90, md: 100, lg: 110, xl: 140, xxl: 150 }}
+                icon={<UserOutlined />}
+              />
+            </Row>
           </Col>
-          <Col>
-            <p>Email: {this.props.userInfo.email}</p>
-            <p>
-              Género: {this.translate("Gender", this.props.userInfo.gender)}
-            </p>
-            <p>
-              Estado del usuario:{" "}
-              {this.translate("Status", this.props.userInfo.status)}
-            </p>
-            <p>
-              Registro: {this.translate("Date", this.props.userInfo.created_at)}
-            </p>
-            <p>
-              Última actualización:{" "}
+          <Col className="UserModal-Info" xs={14} md={16} lg={17}>
+            <Text strong>Email: </Text>
+            <Text
+              copyable={{
+                tooltips: [
+                  "Copiar e-mail en el portapapeles",
+                  "¡E-mail Copiado!",
+                ],
+              }}
+            >
+              {this.props.userInfo.email}
+            </Text>
+            <br />
+            <Text strong>Género: </Text>
+            <Text>{this.translate("Gender", this.props.userInfo.gender)}</Text>
+            <br />
+            <Text strong>Estado del usuario: </Text>
+            <Text>{this.translate("Status", this.props.userInfo.status)}</Text>
+            <br />
+            <Text strong>Registro: </Text>
+            <Text>
+              {this.translate("Date", this.props.userInfo.created_at)}
+            </Text>
+            <br />
+            <Text strong>Última actualización: </Text>
+            <Text>
               {this.translate("Date", this.props.userInfo.updated_at)}
-            </p>
+            </Text>
+          </Col>
+        </Row>
+        <Row justify="end">
+          <Col>
+            <Button
+              className="UserModal-Button"
+              type="primary"
+              onClick={this.props.closeModal}
+            >
+              Volver
+            </Button>
           </Col>
         </Row>
       </Modal>
